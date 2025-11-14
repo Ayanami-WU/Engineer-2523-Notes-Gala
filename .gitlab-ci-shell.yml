@@ -1,0 +1,50 @@
+stages:
+  - build
+  - deploy
+
+# 适用于 Shell Executor 的配置
+# 需要在 Runner 机器上预先安装: python3, pip, mkdocs, mkdocs-material
+
+# Build the MkDocs site
+build:
+  stage: build
+  before_script:
+    - python3 -m pip install --user -q -r requirements.txt
+  script:
+    - export PATH=$PATH:$HOME/.local/bin
+    - mkdocs build
+  artifacts:
+    paths:
+      - site/
+    expire_in: 1 hour
+  only:
+    - master
+    - main
+  tags:
+    - shell  # 使用带有 'shell' tag 的 runner
+
+# Deploy to HK server via SSH using keychain authentication
+deploy_to_server:
+  stage: deploy
+  before_script:
+    # Setup SSH key from GitLab CI/CD variables
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+  script:
+    # Deploy using rsync
+    - rsync -avz --delete site/ $SERVER_USER@$SERVER_HOST:$DEPLOY_PATH
+    # Optional: Restart web server if needed
+    # - ssh $SERVER_USER@$SERVER_HOST "sudo systemctl restart nginx"
+  dependencies:
+    - build
+  only:
+    - master
+    - main
+  tags:
+    - shell  # 使用带有 'shell' tag 的 runner
+  environment:
+    name: production
+    url: http://git.koala-studio.org.cn
