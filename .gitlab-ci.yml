@@ -46,4 +46,4 @@ deploy_to_server:
     - main
   environment:
     name: production
-    url: http://your-server-ip:8111
+    url: http://git.koala-studio.org.cn
