@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  mkdocs-notes:
+    build: .
+    container_name: mkdocs-notes
+    ports:
+      - "8111:80"
+    restart: unless-stopped
+    # If you're using nginx-proxy or traefik, uncomment below:
+    # environment:
+    #   - VIRTUAL_HOST=your-domain.com
+    #   - LETSENCRYPT_HOST=your-domain.com
+    #   - LETSENCRYPT_EMAIL=your-email@example.com

@@ -1,57 +1,30 @@
+# 欢迎来到我的课程笔记本
+
+这里记录了我的大学课程学习笔记。
+
+## 📚 课程列表
+
+### [微积分](calculus/index.md)
+微积分课程笔记，包括极限、导数、积分等内容。
+
+### [线性代数](linear-algebra/index.md)
+线性代数课程笔记，包括矩阵、向量空间、线性变换等内容。
+
+### [C程序设计](c-programming/index.md)
+C语言程序设计课程笔记，包括基础语法、数据结构、算法等内容。
+
+### [工程图学](engineering-graphics/index.md)
+工程图学课程笔记，包括制图规范、投影理论、工程图纸等内容。
+
+### [大学英语](college-english/index.md)
+大学英语课程笔记，包括词汇、语法、阅读、写作等内容。
+
 ---
-hide:
-    - date
-    - footer
-home: true
-template: home.html
-statistics: true
----
 
-# o(〃'▽'〃)o Hi!
+## 📝 关于本站
 
-这里是鹤翔万里（TonyCrane）的个人笔记本哦！  
+本站使用 [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) 构建。
 
-<!-- [:octicons-info-16: 关于我](about/) /  -->
-[:material-clock-time-two-outline: 最近更新](changelog/) / 
-[:octicons-link-16: 朋友们!](links/) / 
-[:material-chart-line: 站点统计](javascript:toggle_statistics();)
+## 📮 联系方式
 
-<div id="statistics" markdown="1" class="card" style="width: 27em; border-color: transparent; opacity: 0; font-size: 75%">
-<div style="padding-left: 1em;" markdown="1">
-页面总数：{{pages}}  
-总字数：{{words}}  
-代码块行数：{{codes}}  
-网站运行时间：<span id="web-time"></span>
-</div>
-</div>
-
-<script>
-function updateTime() {
-    var date = new Date();
-    var now = date.getTime();
-    var startDate = new Date("2022/01/03 09:10:00");
-    var start = startDate.getTime();
-    var diff = now - start;
-    var y, d, h, m;
-    y = Math.floor(diff / (365 * 24 * 3600 * 1000));
-    diff -= y * 365 * 24 * 3600 * 1000;
-    d = Math.floor(diff / (24 * 3600 * 1000));
-    h = Math.floor(diff / (3600 * 1000) % 24);
-    m = Math.floor(diff / (60 * 1000) % 60);
-    if (y == 0) {
-        document.getElementById("web-time").innerHTML = d + "<span class=\"heti-spacing\"> </span>天<span class=\"heti-spacing\"> </span>" + h + "<span class=\"heti-spacing\"> </span>小时<span class=\"heti-spacing\"> </span>" + m + "<span class=\"heti-spacing\"> </span>分钟";
-    } else {
-        document.getElementById("web-time").innerHTML = y + "<span class=\"heti-spacing\"> </span>年<span class=\"heti-spacing\"> </span>" + d + "<span class=\"heti-spacing\"> </span>天<span class=\"heti-spacing\"> </span>" + h + "<span class=\"heti-spacing\"> </span>小时<span class=\"heti-spacing\"> </span>" + m + "<span class=\"heti-spacing\"> </span>分钟";
-    }
-    setTimeout(updateTime, 1000 * 60);
-}
-updateTime();
-function toggle_statistics() {
-    var statistics = document.getElementById("statistics");
-    if (statistics.style.opacity == 0) {
-        statistics.style.opacity = 1;
-    } else {
-        statistics.style.opacity = 0;
-    }
-}
-</script>
+- 待添加...

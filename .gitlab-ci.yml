@@ -1,0 +1,49 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_IMAGE: squidfunk/mkdocs-material:9.7.0
+
+# Build the MkDocs site
+build:
+  stage: build
+  image: $DOCKER_IMAGE
+  before_script:
+    - pip install -q -r requirements.txt
+  script:
+    - mkdocs build
+  artifacts:
+    paths:
+      - site/
+    expire_in: 1 hour
+  only:
+    - master
+    - main
+
+# Deploy to HK server via SSH using keychain authentication
+deploy_to_server:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    # Install openssh and rsync
+    - apk add --no-cache openssh-client rsync
+    # Setup SSH key from GitLab CI/CD variables (SSH keychain)
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+  script:
+    # Deploy using rsync
+    - rsync -avz --delete site/ $SERVER_USER@$SERVER_HOST:$DEPLOY_PATH
+    # Optional: Restart web server if needed
+    # - ssh $SERVER_USER@$SERVER_HOST "sudo systemctl restart nginx"
+  dependencies:
+    - build
+  only:
+    - master
+    - main
+  environment:
+    name: production
+    url: http://your-server-ip:8111
