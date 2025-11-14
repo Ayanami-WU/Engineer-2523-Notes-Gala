@@ -2,16 +2,25 @@ stages:
   - build
   - deploy
 
-variables:
-  DOCKER_IMAGE: squidfunk/mkdocs-material:9.7.0
-
-# Build the MkDocs site
+# Build the MkDocs site (兼容 Shell 和 Docker executor)
 build:
   stage: build
-  image: $DOCKER_IMAGE
   before_script:
-    - pip install -q -r requirements.txt
+    # 检测 Python 命令
+    - |
+      if command -v python3 &> /dev/null; then
+        PYTHON=python3
+      elif command -v python &> /dev/null; then
+        PYTHON=python
+      else
+        echo "Error: Python not found!"
+        exit 1
+      fi
+    # 安装依赖
+    - $PYTHON -m pip install --user -q -r requirements.txt || pip install -q -r requirements.txt
   script:
+    # 确保 mkdocs 在 PATH 中
+    - export PATH=$PATH:$HOME/.local/bin:/usr/local/bin
     - mkdocs build
   artifacts:
     paths:
@@ -24,17 +33,20 @@ build:
 # Deploy to HK server via SSH using keychain authentication
 deploy_to_server:
   stage: deploy
-  image: alpine:latest
   before_script:
-    # Install openssh and rsync
-    - apk add --no-cache openssh-client rsync
     # Setup SSH key from GitLab CI/CD variables (SSH keychain)
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
-    - ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts
+    - ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts 2>/dev/null || true
   script:
+    # 检查 rsync 是否可用
+    - |
+      if ! command -v rsync &> /dev/null; then
+        echo "Error: rsync not found! Please install rsync on the Runner machine."
+        exit 1
+      fi
     # Deploy using rsync
     - rsync -avz --delete site/ $SERVER_USER@$SERVER_HOST:$DEPLOY_PATH
     # Optional: Restart web server if needed
