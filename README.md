@@ -308,13 +308,24 @@ markdown_extensions:
 - 确保图片文件存在于 `docs/assets/images/` 目录
 - 检查文件名大小写
 
-### 4. 推送后网站未更新
+### 4. Pipeline 提示 "no runners online"
+
+推送后 GitLab Pipeline 卡住，显示 "This job is stuck because the project doesn't have any runners online assigned to it"。
+
+**解决方案：** 详见 📖 [GitLab Runner 配置指南](GITLAB_RUNNER_SETUP_CN.md)
+
+**快速解决：**
+1. 尝试启用 ZJU GitLab 共享 Runner（Settings → CI/CD → Runners）
+2. 如无共享 Runner，在服务器上安装 GitLab Runner（使用 `setup-gitlab-runner.sh`）
+3. 或使用手动部署脚本 `deploy-manual.sh`
+
+### 5. 推送后网站未更新
 
 - 检查 GitLab CI/CD Pipeline 状态
 - 查看 Pipeline 日志排查错误
 - 确认 CI/CD 变量配置正确
 
-### 5. 网站样式显示异常
+### 6. 网站样式显示异常
 
 清除浏览器缓存或使用无痕模式访问。
 
