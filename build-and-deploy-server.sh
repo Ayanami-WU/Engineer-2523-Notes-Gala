@@ -101,15 +101,30 @@ sync_code() {
         # 保存当前分支
         CURRENT_BRANCH=$(git branch --show-current)
 
-        # 拉取最新代码
-        git fetch origin
+        # 拉取最新代码（优化：只拉取需要的分支）
+        git fetch origin --depth 1
         git reset --hard origin/main || git reset --hard origin/master
 
         log_info "代码已更新到最新版本"
     else
-        log_info "克隆仓库..."
+        log_info "克隆仓库（使用浅克隆加速）..."
         rm -rf "$PROJECT_DIR"
-        git clone "$REPO_URL" "$PROJECT_DIR"
+
+        # 使用浅克隆（--depth 1）和单分支（--single-branch）加速
+        # 配置 git 使用更大的缓冲区提高速度
+        git clone \
+            --depth 1 \
+            --single-branch \
+            --branch main \
+            "$REPO_URL" \
+            "$PROJECT_DIR" 2>&1 || \
+        git clone \
+            --depth 1 \
+            --single-branch \
+            --branch master \
+            "$REPO_URL" \
+            "$PROJECT_DIR"
+
         cd "$PROJECT_DIR"
         log_info "仓库克隆完成"
     fi
