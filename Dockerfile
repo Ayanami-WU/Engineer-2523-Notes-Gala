@@ -10,15 +10,19 @@ COPY requirements.txt .
 
 # Upgrade pip and install dependencies
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt && \
-    pip list | grep -i mkdocs
+    pip install --no-cache-dir -r requirements.txt
+
+# Show installed MkDocs packages for debugging
+RUN echo "=== Installed MkDocs packages ===" && \
+    pip list | grep -i mkdocs && \
+    echo "==================================="
 
 # Copy source files
 COPY . .
 
-# Verify plugins are available and build the static site
-RUN python -c "import mkdocs_glightbox; print('glightbox plugin loaded successfully')" && \
-    mkdocs build --verbose
+# Build the static site
+# If any plugin is missing, mkdocs build will report it
+RUN mkdocs build --verbose
 
 # Stage 2: Serve with nginx
 FROM nginx:alpine
