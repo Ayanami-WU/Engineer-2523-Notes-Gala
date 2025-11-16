@@ -11,8 +11,23 @@
 
 ### 📝 学习工具
 
-- :material-zip-box: **大英默写器** · 9.0 MB [:material-download:](大英默写器.zip)
-- :material-file-document: **中文+首字母单词表** · 36 KB [:material-download:](中文+首字母单词表.docx)
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/zip.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">大英默写器</div>
+<div class="file-meta">9.0 MB · ZIP压缩包</div>
+</div>
+<a class="down-button" target="_blank" href="大英默写器.zip" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/docx.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">中文+首字母单词表</div>
+<div class="file-meta">36 KB · Word文档</div>
+</div>
+<a class="down-button" target="_blank" href="中文+首字母单词表.docx" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
 
 ---
 

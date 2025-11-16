@@ -11,19 +11,72 @@
 
 ### 📖 笔记与教材
 
-- :material-file-pdf-box: **Hydrofoil的C语言笔记** · 6.4 MB [:material-download:](Hydrofoil的C语言笔记.pdf)
-- :material-file-pdf-box: **C尖琐碎笔记整理** · 1.0 MB [:material-download:](C尖琐碎笔记整理.pdf)
-- :material-file-document: **计算机入门知识** · 493 KB [:material-download:](计算机入门知识.docx)
-- :material-file-document: **C语言网站** [:material-download:](C语言网站.txt)
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">Hydrofoil的C语言笔记</div>
+<div class="file-meta">6.4 MB · PDF文档</div>
+</div>
+<a class="down-button" target="_blank" href="Hydrofoil的C语言笔记.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">C尖琐碎笔记整理</div>
+<div class="file-meta">1.0 MB · PDF文档</div>
+</div>
+<a class="down-button" target="_blank" href="C尖琐碎笔记整理.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/docx.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">计算机入门知识</div>
+<div class="file-meta">493 KB · Word文档</div>
+</div>
+<a class="down-button" target="_blank" href="计算机入门知识.docx" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/docx.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">C语言网站</div>
+<div class="file-meta">文本文件</div>
+</div>
+<a class="down-button" target="_blank" href="C语言网站.txt" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
 
 ### 💻 上机与练习
 
-- :material-folder: **C程上机题目** (165+ 题目) [:material-folder-open:](C程上机题目/)
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/code.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">C程上机题目</div>
+<div class="file-meta">165+ 题目 · 代码文件夹</div>
+</div>
+<a class="down-button" target="_blank" href="C程上机题目/" markdown="1">:fontawesome-solid-folder-open: 打开</a>
+</div>
 
 ### 📝 历年卷与考试资料
 
-- :material-folder: **一些历年卷** [:material-folder-open:](一些历年卷/)
-- :material-folder: **考试宝典** [:material-folder-open:](考试宝典/)
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/folder.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">一些历年卷</div>
+<div class="file-meta">文件夹</div>
+</div>
+<a class="down-button" target="_blank" href="一些历年卷/" markdown="1">:fontawesome-solid-folder-open: 打开</a>
+</div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/folder.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">考试宝典</div>
+<div class="file-meta">文件夹</div>
+</div>
+<a class="down-button" target="_blank" href="考试宝典/" markdown="1">:fontawesome-solid-folder-open: 打开</a>
+</div>
 
 ---
 
