@@ -1,0 +1,95 @@
+name: Deploy to Server
+
+# 触发条件：推送到 main 分支
+on:
+  push:
+    branches:
+      - main
+      - master
+  # 也可以手动触发
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy to Remote Server
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 检出代码（可选，主要用于显示提交信息）
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # 2. 显示部署信息
+      - name: Display deployment info
+        run: |
+          echo "=========================================="
+          echo "GitHub Actions - 服务器端自动化部署"
+          echo "Commit: ${{ github.sha }}"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Author: ${{ github.actor }}"
+          echo "=========================================="
+
+      # 3. 设置 SSH
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+
+      # 4. 测试 SSH 连接
+      - name: Test SSH connection
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "echo 'SSH connection successful!'"
+
+      # 5. 部署到服务器
+      - name: Deploy to server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} bash -s << 'EOF'
+          set -e
+          DEPLOY_DIR=~/mkdocs-deploy
+          SCRIPT_NAME=build-and-deploy-server.sh
+          REPO_URL=https://github.com/${{ github.repository }}.git
+
+          echo "→ 进入部署目录..."
+          mkdir -p $DEPLOY_DIR
+          cd $DEPLOY_DIR
+
+          echo "→ 检查部署脚本..."
+          if [ ! -f "$SCRIPT_NAME" ]; then
+            echo "→ 下载部署脚本..."
+            # 从 GitHub 下载部署脚本
+            wget -q https://raw.githubusercontent.com/${{ github.repository }}/main/build-and-deploy-server.sh -O $SCRIPT_NAME
+            chmod +x $SCRIPT_NAME
+            echo "✓ 部署脚本已下载"
+          else
+            echo "✓ 部署脚本已存在"
+          fi
+
+          echo ""
+          echo "=========================================="
+          echo "开始执行服务器端构建和部署..."
+          echo "=========================================="
+          echo ""
+
+          # 执行部署脚本
+          ./$SCRIPT_NAME
+
+          echo ""
+          echo "=========================================="
+          echo "GitHub Actions 部署任务完成！"
+          echo "=========================================="
+          EOF
+
+      # 6. 显示完成信息
+      - name: Deployment complete
+        run: |
+          echo ""
+          echo "✓ 部署成功完成"
+          echo "访问地址: http://${{ secrets.SERVER_HOST }}:8111"
+          echo ""
+          echo "查看容器状态:"
+          echo "  ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} 'docker ps | grep mkdocs-notes'"

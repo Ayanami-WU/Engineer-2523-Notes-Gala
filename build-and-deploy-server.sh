@@ -14,7 +14,15 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # 配置
-REPO_URL="https://git.koala-studio.org.cn/Koala-Inno-WMX/e-2523-note.git"
+# 自动检测仓库 URL（支持 GitLab 和 GitHub）
+if [ -n "$REPO_URL" ]; then
+    # 如果环境变量已设置，使用环境变量的值
+    REPO_URL="$REPO_URL"
+else
+    # 默认使用 GitHub（可以通过环境变量覆盖）
+    REPO_URL="${REPO_URL:-https://github.com/YOUR_USERNAME/YOUR_REPO.git}"
+fi
+
 DEPLOY_DIR="${HOME}/mkdocs-deploy"
 PROJECT_DIR="${DEPLOY_DIR}/source"
 CONTAINER_NAME="mkdocs-notes"
