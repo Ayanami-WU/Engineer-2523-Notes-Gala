@@ -9,6 +9,12 @@ on:
   # 也可以手动触发
   workflow_dispatch:
 
+# 并发控制：同一时间只允许一个部署任务运行
+# 新的部署会自动取消正在运行的旧部署
+concurrency:
+  group: production-deployment
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: Deploy to Remote Server
