@@ -18,10 +18,6 @@ RUN echo "=== Installed MkDocs packages ===" && \
     pip list | grep -i mkdocs && \
     echo "==================================="
 
-# Use build argument to bust cache for content updates
-# This ensures docs are always fresh while keeping dependency cache
-ARG CACHEBUST=1
-
 # Copy source files
 COPY . .
 
@@ -35,8 +31,8 @@ FROM nginx:alpine
 # Copy built site from builder stage
 COPY --from=builder /docs/site /usr/share/nginx/html
 
-# Copy custom nginx config if needed
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy custom nginx config to enable directory listing
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 80
