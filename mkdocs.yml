@@ -1,10 +1,10 @@
 site_name: 我的课程笔记本
-site_url: https://your-domain.com/
-repo_name: YourUsername/your-repo
-repo_url: https://github.com/YourUsername/your-repo/
-edit_uri: tree/master/docs
+site_url: https://github.com/Ayanami-WU/Engineer-2523-Notes-Gala/
+repo_name: Ayanami-WU/Engineer-2523-Notes-Gala
+repo_url: https://github.com/Ayanami-WU/Engineer-2523-Notes-Gala/
+edit_uri: tree/main/docs
 site_description: 我的大学课程学习笔记
-copyright: Copyright &copy; 2024-2025 Your Name
+copyright: Copyright &copy; 2024-2025 Ayanami-WU
 
 theme: 
   name: 'material'
@@ -69,7 +69,7 @@ validation:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/YourUsername/
+      link: https://github.com/Ayanami-WU/
   # analytics:
   #   provider: custom
   #   property: YOUR_ANALYTICS_ID
