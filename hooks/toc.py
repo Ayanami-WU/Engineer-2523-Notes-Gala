@@ -30,10 +30,15 @@ with open(TEMPLATE_DIR, "r", encoding="utf-8") as file:
 #     {"cs/system/cs1/topic1.md": "859970b504aa527030420ff9fbfffdb1b62d71f1"},
 # ]
 
-with open(IGNORE_DIR, "r", encoding="utf-8") as file:
-    IGNORE_COMMITS = [
-        line.strip() for line in file if line.strip() and not line.startswith("#")
-    ]
+# Load ignored commits from file if it exists, otherwise use empty list
+IGNORE_COMMITS = []
+if os.path.exists(IGNORE_DIR):
+    with open(IGNORE_DIR, "r", encoding="utf-8") as file:
+        IGNORE_COMMITS = [
+            line.strip() for line in file if line.strip() and not line.startswith("#")
+        ]
+else:
+    logger.info(f"hook - toc: {IGNORE_DIR} not found, using empty ignore list")
 
 def on_page_markdown(
     markdown: str, page: Page, config: MkDocsConfig, files: Files, **kwargs
