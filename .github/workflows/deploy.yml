@@ -59,7 +59,9 @@ jobs:
           cd $DEPLOY_DIR
 
           echo "→ 下载最新部署脚本..."
-          # 从 GitHub 下载最新的部署脚本（每次都重新下载以确保使用最新版本）
+          # 删除旧脚本（如果存在）
+          rm -f $SCRIPT_NAME
+          # 从 GitHub 下载最新的部署脚本
           wget -q https://raw.githubusercontent.com/${{ github.repository }}/main/build-and-deploy-server.sh -O $SCRIPT_NAME
           chmod +x $SCRIPT_NAME
           echo "✓ 部署脚本已下载并设置执行权限"
@@ -70,8 +72,8 @@ jobs:
           echo "=========================================="
           echo ""
 
-          # 执行部署脚本
-          ./$SCRIPT_NAME
+          # 执行部署脚本（使用 bash 显式调用避免文件占用问题）
+          bash $SCRIPT_NAME
 
           echo ""
           echo "=========================================="
