@@ -7,13 +7,18 @@ WORKDIR /docs
 
 # Copy requirements and install plugins
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+
+# Upgrade pip and install dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt && \
+    pip list | grep -i mkdocs
 
 # Copy source files
 COPY . .
 
-# Build the static site
-RUN mkdocs build
+# Verify plugins are available and build the static site
+RUN python -c "import mkdocs_glightbox; print('glightbox plugin loaded successfully')" && \
+    mkdocs build --verbose
 
 # Stage 2: Serve with nginx
 FROM nginx:alpine
