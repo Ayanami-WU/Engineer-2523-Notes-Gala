@@ -31,48 +31,48 @@ deploy_to_server:
   script:
     - echo "=========================================="
     - echo "GitLab CI - 服务器端自动化部署"
-    - echo "Commit: $CI_COMMIT_SHORT_SHA"
-    - echo "Branch: $CI_COMMIT_BRANCH"
-    - echo "Author: $CI_COMMIT_AUTHOR"
-    - echo "Message: $CI_COMMIT_MESSAGE"
+    - echo "Commit:$CI_COMMIT_SHORT_SHA"
+    - echo "Branch:$CI_COMMIT_BRANCH"
     - echo "=========================================="
     - echo ""
     # 在服务器上执行部署
     - |
-      ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'ENDSSH'
-        set -e
+      ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST bash -s << 'EOF'
+      set -e
+      DEPLOY_DIR=~/mkdocs-deploy
+      SCRIPT_NAME=build-and-deploy-server.sh
 
-        echo "→ 进入部署目录..."
-        mkdir -p $DEPLOY_DIR
-        cd $DEPLOY_DIR
+      echo "→ 进入部署目录..."
+      mkdir -p $DEPLOY_DIR
+      cd $DEPLOY_DIR
 
-        echo "→ 检查部署脚本..."
-        if [ ! -f "$SCRIPT_NAME" ]; then
-          echo "→ 下载部署脚本..."
-          wget -q https://git.koala-studio.org.cn/Koala-Inno-WMX/e-2523-note/-/raw/main/build-and-deploy-server.sh -O $SCRIPT_NAME
-          chmod +x $SCRIPT_NAME
-          echo "✓ 部署脚本已下载"
-        else
-          echo "✓ 部署脚本已存在"
-        fi
+      echo "→ 检查部署脚本..."
+      if [ ! -f "$SCRIPT_NAME" ]; then
+        echo "→ 下载部署脚本..."
+        wget -q https://git.koala-studio.org.cn/Koala-Inno-WMX/e-2523-note/-/raw/main/build-and-deploy-server.sh -O $SCRIPT_NAME
+        chmod +x $SCRIPT_NAME
+        echo "✓ 部署脚本已下载"
+      else
+        echo "✓ 部署脚本已存在"
+      fi
 
-        echo ""
-        echo "=========================================="
-        echo "开始执行服务器端构建和部署..."
-        echo "=========================================="
-        echo ""
+      echo ""
+      echo "=========================================="
+      echo "开始执行服务器端构建和部署..."
+      echo "=========================================="
+      echo ""
 
-        # 执行部署脚本
-        ./$SCRIPT_NAME
+      # 执行部署脚本
+      ./$SCRIPT_NAME
 
-        echo ""
-        echo "=========================================="
-        echo "GitLab CI 部署任务完成！"
-        echo "=========================================="
-      ENDSSH
+      echo ""
+      echo "=========================================="
+      echo "GitLab CI 部署任务完成！"
+      echo "=========================================="
+      EOF
     - echo ""
     - echo "✓ 部署成功完成"
-    - echo "访问地址: http://$SERVER_HOST:8111"
+    - echo "访问地址:http://$SERVER_HOST:8111"
   only:
     - master
     - main
