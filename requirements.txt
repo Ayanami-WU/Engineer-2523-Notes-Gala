@@ -1,26 +1,14 @@
-# Core MkDocs and Material Theme
-mkdocs>=1.6.1,<2.0.0
-mkdocs-material>=9.6.16,<10.0.0
-mkdocs-material-extensions>=1.3.1
+# Note: squidfunk/mkdocs-material base image already includes:
+# - mkdocs
+# - mkdocs-material
+# - mkdocs-material-extensions
+# - pymdown-extensions
+# Only install additional plugins below
 
 # Required Plugins
-mkdocs-glightbox>=0.4.0
-mkdocs-rss-plugin>=1.17.3
-mkdocs-git-revision-date-localized-plugin>=1.4.7
-mkdocs-changelog-plugin==0.1.3
-mkdocs-heti-plugin==0.1.6
-mkdocs-statistics-plugin==0.1.4
-
-# Python Dependencies (often required by plugins)
-Jinja2>=3.0.0
-Markdown>=3.3.0
-PyYAML>=5.1
-Pygments>=2.16.0
-pymdown-extensions>=10.0
-python-dateutil>=2.8.0
-GitPython>=3.1.0
-pytz>=2021.1
-
-# Optional but recommended
-beautifulsoup4>=4.9.0
-lxml>=4.6.0
+mkdocs-glightbox
+mkdocs-rss-plugin
+mkdocs-git-revision-date-localized-plugin
+mkdocs-changelog-plugin
+mkdocs-heti-plugin
+mkdocs-statistics-plugin
