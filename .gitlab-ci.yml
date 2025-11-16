@@ -42,8 +42,8 @@ build_docker:
   only:
     - master
     - main
-  tags:
-    - docker
+  # tags:
+  #   - docker  # 使用共享 Runner，如需专用 Runner 请取消注释
 
 # 部署到远程服务器
 deploy_to_server:
@@ -92,5 +92,5 @@ deploy_to_server:
   environment:
     name: production
     url: http://$SERVER_HOST:8111
-  tags:
-    - docker
+  # tags:
+  #   - docker  # 使用共享 Runner，如需专用 Runner 请取消注释
