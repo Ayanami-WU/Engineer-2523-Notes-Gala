@@ -1,96 +1,84 @@
-# GitLab CI/CD Pipeline for MkDocs Material (Docker Deployment)
-# 使用 Docker 构建和部署到远程服务器
+# GitLab CI/CD Pipeline for MkDocs Material
+# 方案：通过 SSH 触发服务器端构建和部署
+# 优势：避免 Runner 资源限制，构建在服务器上进行
 
 stages:
-  - build
   - deploy
 
 variables:
-  # Docker 配置
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: "/certs"
-  # 镜像标签
-  IMAGE_NAME: mkdocs-notes
-  IMAGE_TAG: $CI_COMMIT_SHORT_SHA
   # 部署配置
-  CONTAINER_NAME: mkdocs-notes
-  HOST_PORT: 8111
-  CONTAINER_PORT: 80
+  DEPLOY_DIR: "~/mkdocs-deploy"
+  SCRIPT_NAME: "build-and-deploy-server.sh"
 
-# 构建 Docker 镜像
-build_docker:
-  stage: build
-  image: docker:24-cli
-  services:
-    - docker:24-dind
-  before_script:
-    - echo "Building Docker image for commit $CI_COMMIT_SHORT_SHA"
-    - docker info
-  script:
-    # 验证 Dockerfile 存在
-    - test -f Dockerfile || (echo "Dockerfile not found!" && exit 1)
-    # 构建镜像
-    - docker build -t $IMAGE_NAME:$IMAGE_TAG -t $IMAGE_NAME:latest .
-    # 保存镜像为 tar 文件
-    - docker save $IMAGE_NAME:latest -o mkdocs-image.tar
-  artifacts:
-    paths:
-      - mkdocs-image.tar
-      - docker-compose.yml
-      - deploy-docker.sh
-    expire_in: 1 hour
-  only:
-    - master
-    - main
-  # tags:
-  #   - docker  # 使用共享 Runner，如需专用 Runner 请取消注释
-
-# 部署到远程服务器
+# 自动化部署到服务器
 deploy_to_server:
   stage: deploy
   image: alpine:latest
   before_script:
-    # 安装必要工具
-    - apk add --no-cache openssh-client rsync bash
-    # 设置 SSH
+    - echo "Preparing to deploy to $SERVER_USER@$SERVER_HOST"
+    # 安装 SSH 客户端
+    - apk add --no-cache openssh-client bash
+    # 设置 SSH 密钥
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
     - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
+    # 添加服务器到 known_hosts
     - ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts 2>/dev/null
     # 验证 SSH 连接
-    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "echo 'SSH connection successful'"
+    - echo "Testing SSH connection..."
+    - ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST "echo 'SSH connection successful!'"
   script:
-    - echo "Deploying to $SERVER_USER@$SERVER_HOST:$DEPLOY_PATH"
-    # 创建部署目录
-    - ssh $SERVER_USER@$SERVER_HOST "mkdir -p $DEPLOY_PATH"
-    # 传输文件到服务器
-    - rsync -avz --progress mkdocs-image.tar $SERVER_USER@$SERVER_HOST:$DEPLOY_PATH/
-    - rsync -avz --progress docker-compose.yml $SERVER_USER@$SERVER_HOST:$DEPLOY_PATH/
-    - rsync -avz --progress deploy-docker.sh $SERVER_USER@$SERVER_HOST:$DEPLOY_PATH/
-    # 在服务器上执行部署脚本
+    - echo "=========================================="
+    - echo "GitLab CI - 服务器端自动化部署"
+    - echo "Commit: $CI_COMMIT_SHORT_SHA"
+    - echo "Branch: $CI_COMMIT_BRANCH"
+    - echo "Author: $CI_COMMIT_AUTHOR"
+    - echo "Message: $CI_COMMIT_MESSAGE"
+    - echo "=========================================="
+    - echo ""
+    # 在服务器上执行部署
     - |
-      ssh $SERVER_USER@$SERVER_HOST << 'EOF'
+      ssh -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_HOST << 'ENDSSH'
         set -e
-        cd $DEPLOY_PATH
-        echo "Loading Docker image..."
-        docker load -i mkdocs-image.tar
-        echo "Stopping old container..."
-        docker-compose down || true
-        echo "Starting new container..."
-        docker-compose up -d
-        echo "Cleaning up old images..."
-        docker image prune -f
-        echo "Deployment completed!"
-        echo "Service running at: http://$SERVER_HOST:8111"
-      EOF
-  dependencies:
-    - build_docker
+
+        echo "→ 进入部署目录..."
+        mkdir -p $DEPLOY_DIR
+        cd $DEPLOY_DIR
+
+        echo "→ 检查部署脚本..."
+        if [ ! -f "$SCRIPT_NAME" ]; then
+          echo "→ 下载部署脚本..."
+          wget -q https://git.koala-studio.org.cn/Koala-Inno-WMX/e-2523-note/-/raw/main/build-and-deploy-server.sh -O $SCRIPT_NAME
+          chmod +x $SCRIPT_NAME
+          echo "✓ 部署脚本已下载"
+        else
+          echo "✓ 部署脚本已存在"
+        fi
+
+        echo ""
+        echo "=========================================="
+        echo "开始执行服务器端构建和部署..."
+        echo "=========================================="
+        echo ""
+
+        # 执行部署脚本
+        ./$SCRIPT_NAME
+
+        echo ""
+        echo "=========================================="
+        echo "GitLab CI 部署任务完成！"
+        echo "=========================================="
+      ENDSSH
+    - echo ""
+    - echo "✓ 部署成功完成"
+    - echo "访问地址: http://$SERVER_HOST:8111"
   only:
     - master
     - main
   environment:
     name: production
     url: http://$SERVER_HOST:8111
+  # 如果需要使用专用 Runner，取消下面的注释
   # tags:
-  #   - docker  # 使用共享 Runner，如需专用 Runner 请取消注释
+  #   - docker
