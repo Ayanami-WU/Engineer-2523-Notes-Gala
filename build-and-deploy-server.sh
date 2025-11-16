@@ -20,7 +20,7 @@ if [ -n "$REPO_URL" ]; then
     REPO_URL="$REPO_URL"
 else
     # 默认使用 GitHub（可以通过环境变量覆盖）
-    REPO_URL="${REPO_URL:-https://github.com/YOUR_USERNAME/YOUR_REPO.git}"
+    REPO_URL="${REPO_URL:-https://github.com/Ayanami-WU/Engineer-2523-Notes-Gala.git}"
 fi
 
 DEPLOY_DIR="${HOME}/mkdocs-deploy"
