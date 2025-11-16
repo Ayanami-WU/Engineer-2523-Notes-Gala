@@ -9,15 +9,45 @@
 
 ## 📚 课程资料
 
-### 📖 笔记与参考
+### 📖 复习资料
 
-- :material-file-pdf-box: **线代公式手册 线性代数公式手册** · 6.6 MB [:material-download:](线代公式手册%20线性代数公式手册.pdf)
-- :material-file-pdf-box: **冰川克里斯的线代复习大纲** · 868 KB [:material-download:](冰川克里斯的线代复习大纲.pdf)
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">冰川克里斯的线代复习大纲</div>
+<div class="file-meta">868 KB · PDF文档</div>
+</div>
+<a class="down-button" target="_blank" href="冰川克里斯的线代复习大纲.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
 
-### 📝 历年卷与考试资料
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">线代公式手册 线性代数公式手册</div>
+<div class="file-meta">6.6 MB · PDF文档</div>
+</div>
+<a class="down-button" target="_blank" href="线代公式手册 线性代数公式手册.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
 
-- :material-folder: **真题合集** [:material-folder-open:](真题/)
-- :material-folder: **考试宝典** [:material-folder-open:](考试宝典/)
+### 📝 真题与考试资料
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/folder.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">真题</div>
+<div class="file-meta">文件夹</div>
+</div>
+<a class="down-button" target="_blank" href="真题/" markdown="1">:fontawesome-solid-folder-open: 打开</a>
+</div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/folder.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">考试宝典</div>
+<div class="file-meta">文件夹</div>
+</div>
+<a class="down-button" target="_blank" href="考试宝典/" markdown="1">:fontawesome-solid-folder-open: 打开</a>
+</div>
 
 ---
 

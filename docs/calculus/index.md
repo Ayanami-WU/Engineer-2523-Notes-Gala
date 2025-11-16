@@ -11,14 +11,52 @@
 
 ### 📖 笔记与教材
 
-- :material-file-pdf-box: **檠荛的微积分笔记** · 18 MB [:material-download:](檠荛的微积分笔记.pdf)
-- :material-file-pdf-box: **《高等学校数学教材习题集》** · 6.4 MB [:material-download:](《高等学校数学教材习题集》.pdf)
-- :material-file-pdf-box: **微积分习题课讲义** · 1.9 MB [:material-download:](微积分习题课讲义.pdf)
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">檠荛的微积分笔记</div>
+<div class="file-meta">18 MB · PDF文档</div>
+</div>
+<a class="down-button" target="_blank" href="檠荛的微积分笔记.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">《高等学校数学教材习题集》</div>
+<div class="file-meta">6.4 MB · PDF文档</div>
+</div>
+<a class="down-button" target="_blank" href="《高等学校数学教材习题集》.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">微积分习题课讲义</div>
+<div class="file-meta">1.9 MB · PDF文档</div>
+</div>
+<a class="down-button" target="_blank" href="微积分习题课讲义.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
 
 ### 📝 历年卷与真题
 
-- :material-file-pdf-box: **微积分期末历年卷** · 2.9 MB [:material-download:](微积分期末历年卷.pdf)
-- :material-folder: **真题合集** [:material-folder-open:](真题/)
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">微积分期末历年卷</div>
+<div class="file-meta">2.9 MB · PDF文档</div>
+</div>
+<a class="down-button" target="_blank" href="微积分期末历年卷.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/folder.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">真题合集</div>
+<div class="file-meta">文件夹</div>
+</div>
+<a class="down-button" target="_blank" href="真题/" markdown="1">:fontawesome-solid-folder-open: 打开</a>
+</div>
 
 ---
 
