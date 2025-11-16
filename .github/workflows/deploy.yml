@@ -69,8 +69,8 @@ jobs:
           echo "→ 下载最新部署脚本..."
           # 删除旧脚本（如果存在）
           rm -f $SCRIPT_NAME
-          # 从 GitHub 下载最新的部署脚本
-          wget -q https://raw.githubusercontent.com/${{ github.repository }}/main/build-and-deploy-server.sh -O $SCRIPT_NAME
+          # 从 GitHub 下载最新的部署脚本（现在在 .deploy/ 文件夹中）
+          wget -q https://raw.githubusercontent.com/${{ github.repository }}/main/.deploy/build-and-deploy-server.sh -O $SCRIPT_NAME
           chmod +x $SCRIPT_NAME
           echo "✓ 部署脚本已下载并设置执行权限"
 
