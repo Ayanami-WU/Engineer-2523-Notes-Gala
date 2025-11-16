@@ -4,7 +4,7 @@ repo_name: Ayanami-WU/Engineer-2523-Notes-Gala
 repo_url: https://github.com/Ayanami-WU/Engineer-2523-Notes-Gala/
 edit_uri: tree/main/docs
 site_description: 工试2523の大学课程学习笔记
-copyright: Copyright &copy; 2024-2025 Ayanami-WU
+copyright: Copyright &copy; 2024-2025 工试2523 & Ayanami-WU
 
 theme: 
   name: 'material'
