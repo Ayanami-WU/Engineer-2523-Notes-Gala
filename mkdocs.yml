@@ -1,9 +1,9 @@
-site_name: 我的课程笔记本
+site_name: 工试2523の笔记本
 site_url: https://github.com/Ayanami-WU/Engineer-2523-Notes-Gala/
 repo_name: Ayanami-WU/Engineer-2523-Notes-Gala
 repo_url: https://github.com/Ayanami-WU/Engineer-2523-Notes-Gala/
 edit_uri: tree/main/docs
-site_description: 我的大学课程学习笔记
+site_description: 工试2523の大学课程学习笔记
 copyright: Copyright &copy; 2024-2025 Ayanami-WU
 
 theme: 
@@ -24,6 +24,17 @@ theme:
   font: false
   palette:
     - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换到暗色模式
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: 切换到浅色模式
 
 markdown_extensions:
   - toc:
@@ -70,6 +81,8 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/Ayanami-WU/
+    - icon: fontawesome/solid/envelope
+      link: mailto:wumingxuan@zju.edu.cn
   # analytics:
   #   provider: custom
   #   property: YOUR_ANALYTICS_ID
