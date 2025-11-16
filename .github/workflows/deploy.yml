@@ -58,16 +58,11 @@ jobs:
           mkdir -p $DEPLOY_DIR
           cd $DEPLOY_DIR
 
-          echo "→ 检查部署脚本..."
-          if [ ! -f "$SCRIPT_NAME" ]; then
-            echo "→ 下载部署脚本..."
-            # 从 GitHub 下载部署脚本
-            wget -q https://raw.githubusercontent.com/${{ github.repository }}/main/build-and-deploy-server.sh -O $SCRIPT_NAME
-            chmod +x $SCRIPT_NAME
-            echo "✓ 部署脚本已下载"
-          else
-            echo "✓ 部署脚本已存在"
-          fi
+          echo "→ 下载最新部署脚本..."
+          # 从 GitHub 下载最新的部署脚本（每次都重新下载以确保使用最新版本）
+          wget -q https://raw.githubusercontent.com/${{ github.repository }}/main/build-and-deploy-server.sh -O $SCRIPT_NAME
+          chmod +x $SCRIPT_NAME
+          echo "✓ 部署脚本已下载并设置执行权限"
 
           echo ""
           echo "=========================================="
