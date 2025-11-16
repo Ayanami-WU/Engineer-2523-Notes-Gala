@@ -158,10 +158,10 @@ build_docker_image() {
         docker rmi "$IMAGE_NAME:latest" 2>/dev/null || true
     fi
 
-    # 构建新镜像
-    log_info "开始构建（这可能需要几分钟）..."
+    # 构建新镜像（强制重新构建，不使用缓存）
+    log_info "开始构建（使用 --no-cache 强制重新构建，这可能需要几分钟）..."
 
-    if docker build -t "$IMAGE_NAME:latest" . 2>&1 | tee /tmp/docker-build.log; then
+    if docker build --no-cache -t "$IMAGE_NAME:latest" . 2>&1 | tee /tmp/docker-build.log; then
         log_info "✓ Docker 镜像构建成功"
     else
         log_error "✗ Docker 镜像构建失败"
@@ -181,13 +181,13 @@ start_container() {
     cd "$PROJECT_DIR"
 
     if [ -f "docker-compose.yml" ]; then
-        # 使用 docker-compose
+        # 使用 docker-compose（强制重新构建和重新创建）
         if docker compose version &> /dev/null; then
-            docker compose up -d
+            docker compose up -d --build --force-recreate
         else
-            docker-compose up -d
+            docker-compose up -d --build --force-recreate
         fi
-        log_info "容器已通过 docker-compose 启动"
+        log_info "容器已通过 docker-compose 启动（强制重新构建）"
     else
         # 直接使用 docker run
         docker run -d \
