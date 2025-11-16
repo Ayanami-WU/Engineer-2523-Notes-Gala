@@ -158,10 +158,15 @@ build_docker_image() {
         docker rmi "$IMAGE_NAME:latest" 2>/dev/null || true
     fi
 
-    # 构建新镜像（强制重新构建，不使用缓存）
-    log_info "开始构建（使用 --no-cache 强制重新构建，这可能需要几分钟）..."
+    # 构建新镜像（使用智能缓存策略）
+    # CACHEBUST参数确保文档内容更新，同时保留Python依赖缓存
+    CACHEBUST=$(date +%s)
+    log_info "开始构建（使用缓存加速，文档内容强制更新）..."
+    log_info "缓存破坏参数: $CACHEBUST"
 
-    if docker build --no-cache -t "$IMAGE_NAME:latest" . 2>&1 | tee /tmp/docker-build.log; then
+    if docker build \
+        --build-arg CACHEBUST="$CACHEBUST" \
+        -t "$IMAGE_NAME:latest" . 2>&1 | tee /tmp/docker-build.log; then
         log_info "✓ Docker 镜像构建成功"
     else
         log_error "✗ Docker 镜像构建失败"
@@ -181,13 +186,13 @@ start_container() {
     cd "$PROJECT_DIR"
 
     if [ -f "docker-compose.yml" ]; then
-        # 使用 docker-compose（强制重新构建和重新创建）
+        # 使用 docker-compose（镜像已构建好，只需启动）
         if docker compose version &> /dev/null; then
-            docker compose up -d --build --force-recreate
+            docker compose up -d --force-recreate
         else
-            docker-compose up -d --build --force-recreate
+            docker-compose up -d --force-recreate
         fi
-        log_info "容器已通过 docker-compose 启动（强制重新构建）"
+        log_info "容器已通过 docker-compose 启动"
     else
         # 直接使用 docker run
         docker run -d \

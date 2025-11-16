@@ -9,6 +9,7 @@ WORKDIR /docs
 COPY requirements.txt .
 
 # Upgrade pip and install dependencies
+# This layer will be cached unless requirements.txt changes
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
@@ -16,6 +17,10 @@ RUN pip install --no-cache-dir --upgrade pip && \
 RUN echo "=== Installed MkDocs packages ===" && \
     pip list | grep -i mkdocs && \
     echo "==================================="
+
+# Use build argument to bust cache for content updates
+# This ensures docs are always fresh while keeping dependency cache
+ARG CACHEBUST=1
 
 # Copy source files
 COPY . .
