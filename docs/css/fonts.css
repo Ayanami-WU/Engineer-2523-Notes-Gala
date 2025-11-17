@@ -1,4 +1,4 @@
-/* JetBrains Mono Font */
+/* JetBrains Mono Font - Self-hosted */
 @font-face {
   font-family: 'JetBrains Mono';
   font-style: normal;
@@ -23,5 +23,5 @@
   src: url('../fonts/jetbrains-mono/JetBrainsMono-Italic.woff2') format('woff2');
 }
 
-/* LXGW WenKai Screen Font - 使用 Google Fonts CDN */
-@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+Screen&display=swap');
+/* LXGW WenKai Screen Font - Using jsDelivr CDN (China-friendly) */
+@import url('https://cdn.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css');
