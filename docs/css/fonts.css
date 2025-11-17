@@ -1,0 +1,27 @@
+/* JetBrains Mono Font */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono/JetBrainsMono-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono/JetBrainsMono-Italic.woff2') format('woff2');
+}
+
+/* LXGW WenKai Screen Font - 使用 Google Fonts CDN */
+@import url('https://fonts.googleapis.com/css2?family=LXGW+WenKai+Screen&display=swap');
