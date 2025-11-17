@@ -195,13 +195,13 @@ start_container() {
     cd "$PROJECT_DIR"
 
     if [ -f "docker-compose.yml" ]; then
-        # 使用 docker-compose（镜像已构建好，只需启动）
+        # 使用 docker-compose（强制重新构建和重新创建）
         if docker compose version &> /dev/null; then
-            docker compose up -d --force-recreate
+            docker compose up -d --build --force-recreate
         else
-            docker-compose up -d --force-recreate
+            docker-compose up -d --build --force-recreate
         fi
-        log_info "容器已通过 docker-compose 启动"
+        log_info "容器已通过 docker-compose 启动（强制重新构建）"
     else
         # 直接使用 docker run
         docker run -d \
