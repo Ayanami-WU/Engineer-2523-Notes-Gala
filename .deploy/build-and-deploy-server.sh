@@ -137,10 +137,24 @@ sync_code() {
 stop_old_container() {
     log_step "停止旧容器..."
 
-    if docker ps -a | grep -q "$CONTAINER_NAME"; then
+    cd "$PROJECT_DIR"
+
+    # 如果使用 docker-compose，先尝试清理
+    if [ -f "docker-compose.yml" ]; then
+        log_info "使用 docker-compose 停止容器..."
+        if docker compose version &> /dev/null; then
+            docker compose down 2>/dev/null || true
+        else
+            docker-compose down 2>/dev/null || true
+        fi
+    fi
+
+    # 强制清理所有同名容器（兜底策略）
+    if docker ps -a --format '{{.Names}}' | grep -q "^${CONTAINER_NAME}$"; then
+        log_info "强制清理同名容器..."
         docker stop "$CONTAINER_NAME" 2>/dev/null || true
-        docker rm "$CONTAINER_NAME" 2>/dev/null || true
-        log_info "旧容器已停止并删除"
+        docker rm -f "$CONTAINER_NAME" 2>/dev/null || true
+        log_info "旧容器已强制删除"
     else
         log_info "未找到旧容器"
     fi
