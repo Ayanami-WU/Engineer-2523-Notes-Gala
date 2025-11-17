@@ -88,7 +88,7 @@ extra:
   #   property: YOUR_ANALYTICS_ID
 
 extra_css:
-  - https://cdn.tonycrane.cc/utils/katex.min.css
+  - katex/katex.min.css
   - css/fonts.css
   - css/tasklist.css
   - css/custom.css
@@ -99,7 +99,7 @@ extra_css:
   - css/svg_extra.css
 
 extra_javascript:
-  - https://cdn.tonycrane.cc/utils/katex.min.js
+  - katex/katex.min.js
   - js/katex.js
 
 plugins:
