@@ -55,10 +55,3 @@
 </div>
 <a class="down-button" target="_blank" href="真题.zip" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
-
----
-
-## 📝 我的笔记
-
-!!! tip "开始记录"
-    在这里添加你的学习笔记...
