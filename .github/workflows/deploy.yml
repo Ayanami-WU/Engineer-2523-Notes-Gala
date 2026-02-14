@@ -45,9 +45,13 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          # 使用环境变量写入私钥，避免特殊字符问题
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          # 写入私钥，确保正确的换行符
+          printf "%s\n" "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
+          # 验证私钥格式
+          echo "Checking SSH key format..."
+          head -n 1 ~/.ssh/id_rsa
+          tail -n 1 ~/.ssh/id_rsa
           # 添加服务器到 known_hosts
           ssh-keyscan -H $SERVER_HOST >> ~/.ssh/known_hosts 2>/dev/null || true
 
