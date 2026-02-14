@@ -101,6 +101,8 @@ extra_css:
 extra_javascript:
   - katex/katex.min.js
   - js/katex.js
+  - js/scheme.js
+  - js/toc.js
 
 plugins:
   - rss:
