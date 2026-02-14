@@ -19,8 +19,8 @@ if [ -n "$REPO_URL" ]; then
     # 如果环境变量已设置，使用环境变量的值
     REPO_URL="$REPO_URL"
 else
-    # 默认使用 GitHub（可以通过环境变量覆盖）
-    REPO_URL="${REPO_URL:-https://github.com/Ayanami-WU/Engineer-2523-Notes-Gala.git}"
+    # 使用 GitHub 镜像加速（国内服务器访问）
+    REPO_URL="${REPO_URL:-https://mirror.ghproxy.org/https://github.com/Ayanami-WU/Engineer-2523-Notes-Gala.git}"
 fi
 
 DEPLOY_DIR="${HOME}/mkdocs-deploy"
