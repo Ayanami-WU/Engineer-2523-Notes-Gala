@@ -1,6 +1,6 @@
 # 工试2523の笔记本
 
-> 📚 浙江大学工程试验班 2523 课程笔记与资料整理
+> 📚 浙江大学工科试验班 2523 课程笔记与资料整理
 
 这是一个基于 [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) 构建的在线笔记网站，整理并分享大学课程的学习笔记、考试资料和学习心得。
 
@@ -57,9 +57,9 @@
 │   │   └── files/           # 文件资料
 │   ├── css/                 # 自定义样式
 │   └── js/                  # 自定义脚本
-├── .deploy/                  # 部署相关文档和脚本
-│   ├── DEPLOY_NOW.md        # 部署指南
-│   └── *.sh                 # 部署脚本
+├── .deploy/                  # 部署脚本
+│   ├── build-and-deploy-server.sh  # 服务器端部署脚本
+│   └── server-init.sh       # 服务器初始化脚本
 ├── overrides/               # 主题自定义覆盖
 ├── hooks/                   # MkDocs 钩子脚本
 ├── mkdocs.yml              # MkDocs 配置文件
@@ -70,28 +70,6 @@
     └── workflows/
         └── deploy.yml      # 自动部署配置
 ```
-
----
-
-## 🚀 快速开始
-
-### 在线访问
-
-访问已部署的网站：`http://your-server-ip:8111`
-
-### 本地预览
-
-使用 Docker 快速启动本地预览：
-
-```bash
-docker run --rm -it \
-  -v $(pwd):/docs \
-  -p 8000:8000 \
-  squidfunk/mkdocs-material:9.7.0 \
-  sh -c "pip install -r requirements.txt && mkdocs serve -a 0.0.0.0:8000"
-```
-
-然后访问 `http://localhost:8000`
 
 ---
 
@@ -127,9 +105,8 @@ docker run --rm -it \
 ## 📖 更多信息
 
 ### 部署说明
-详细的部署文档请查看 [.deploy/](.deploy/) 目录：
-- `.deploy/DEPLOY_NOW.md` - 完整部署指南
-- `.deploy/QUICK_GITHUB_SETUP.md` - 快速设置指南
+本项目使用 GitHub Actions 自动部署，配置文件位于 `.github/workflows/deploy.yml`。
+部署脚本位于 `.deploy/` 目录。
 
 ### 模板来源
 本项目基于 [TonyCrane/note](https://github.com/TonyCrane/note) 模板构建，在此表示感谢！

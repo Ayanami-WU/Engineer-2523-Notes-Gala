@@ -15,3 +15,7 @@ cache/
 .obsidian/
 .ignored-commits
 Makefile
+
+# IDE
+.idea/
+.vscode/
