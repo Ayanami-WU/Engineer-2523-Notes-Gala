@@ -10,7 +10,7 @@
 
 <div class="grid cards" markdown>
 
--   :material-calculator: **微积分（甲）II**
+-   :material-calculator: **微积分（甲）**
 
     函数、极限、导数、积分等基础知识
 

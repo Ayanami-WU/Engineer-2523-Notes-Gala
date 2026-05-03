@@ -14,13 +14,19 @@
 
     本学期资料、期中期末与小测整理
 
-    [:octicons-arrow-right-24: 查看甲 II 资料](index.md)
+    [:octicons-arrow-right-24: 查看甲 II 资料](ii.md)
 
 -   :material-book-clock-outline: **往期资料：微积分（甲）I**
 
     旧版笔记、习题课讲义与历年卷
 
     [:octicons-arrow-right-24: 当前页面](i.md)
+
+-   :material-swap-horizontal: **课程总入口：微积分（甲）**
+
+    返回总入口页面进行课程切换
+
+    [:octicons-arrow-right-24: 返回入口页](index.md)
 
 </div>
 
