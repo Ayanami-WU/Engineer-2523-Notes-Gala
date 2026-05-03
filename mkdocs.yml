@@ -146,7 +146,9 @@ not_in_nav: todo.md
 
 nav:
   - 首页: index.md
-  - 微积分: calculus/index.md
+  - 微积分:
+    - 微积分（甲）II: calculus/index.md
+    - 微积分（甲）I: calculus/i.md
   - 线性代数: linear-algebra/index.md
   - C程序设计: c-programming/index.md
   - 工程图学: engineering-graphics/index.md

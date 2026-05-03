@@ -10,7 +10,7 @@
 
 <div class="grid cards" markdown>
 
--   :material-calculator: **微积分**
+-   :material-calculator: **微积分（甲）II**
 
     函数、极限、导数、积分等基础知识
 
@@ -39,6 +39,36 @@
     英语综合能力提升
 
     [:octicons-arrow-right-24: 进入课程](college-english/index.md)
+
+-   :material-chart-bell-curve: **常微分方程**
+
+    一阶与高阶微分方程、线性方程与应用
+
+    [:octicons-arrow-right-24: 进入课程](ode/index.md)
+
+-   :material-atom: **大学物理（甲）I**
+
+    力学、振动波动、热学与电磁学基础
+
+    [:octicons-arrow-right-24: 进入课程](physics/index.md)
+
+-   :material-ruler-square: **机械制图**
+
+    机械图样阅读、习题答案与图纸资料
+
+    [:octicons-arrow-right-24: 进入课程](mechanical-drawing/index.md)
+
+-   :material-robot-outline: **人工智能基础（A）**
+
+    人工智能入门讲义与课程课件整理
+
+    [:octicons-arrow-right-24: 进入课程](ai-fundamentals/index.md)
+
+-   :material-newspaper-variant-outline: **形势与政策I**
+
+    课程笔记、时事资料与考前复习内容
+
+    [:octicons-arrow-right-24: 进入课程](politics/index.md)
 
 </div>
 
