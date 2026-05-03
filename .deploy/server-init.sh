@@ -1,17 +1,22 @@
 #!/bin/bash
 #########################################################################
-# 服务器初始化脚本
-# 在全新的远程服务器上运行，安装 Docker 和必要的工具
+# Caddy static site bootstrap for this project.
+# Run once on the remote server before GitHub Actions deploys releases.
 #########################################################################
 
-set -e
+set -euo pipefail
 
-# 颜色定义
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
+
+SITE_HOST="${SITE_HOST:-:8111}"
+DEPLOY_PATH="${DEPLOY_PATH:-/srv/mkdocs-site}"
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+CADDY_TEMPLATE="$REPO_DIR/Caddyfile"
+TMP_CADDYFILE="$(mktemp)"
 
 log_info() {
     echo -e "${GREEN}[INFO]${NC} $1"
@@ -21,251 +26,159 @@ log_warn() {
     echo -e "${YELLOW}[WARN]${NC} $1"
 }
 
-log_error() {
-    echo -e "${RED}[ERROR]${NC} $1"
-}
-
 log_step() {
     echo -e "${BLUE}[STEP]${NC} $1"
 }
 
-# 检测操作系统
 detect_os() {
-    log_step "检测操作系统..."
+    log_step "Detecting operating system..."
     if [ -f /etc/os-release ]; then
         . /etc/os-release
-        OS=$ID
-        VER=$VERSION_ID
-        log_info "操作系统: $OS $VER"
+        OS="$ID"
+        VER="${VERSION_ID:-unknown}"
+        log_info "Detected: $OS $VER"
     else
-        log_error "无法检测操作系统"
+        echo "Unable to detect operating system."
         exit 1
     fi
 }
 
-# 更新系统
-update_system() {
-    log_step "更新系统包..."
-    case $OS in
+install_basic_tools() {
+    log_step "Installing required tools..."
+    case "$OS" in
         ubuntu|debian)
             sudo apt-get update
-            sudo apt-get upgrade -y
+            sudo apt-get install -y curl ca-certificates debian-keyring debian-archive-keyring apt-transport-https gnupg
             ;;
-        centos|rhel|rocky|almalinux)
-            sudo yum update -y
+        centos|rhel|rocky|almalinux|fedora)
+            if command -v dnf >/dev/null 2>&1; then
+                sudo dnf install -y curl ca-certificates
+            else
+                sudo yum install -y curl ca-certificates
+            fi
             ;;
         *)
-            log_warn "未识别的系统，跳过更新"
+            echo "Unsupported OS: $OS"
+            exit 1
             ;;
     esac
 }
 
-# 安装基础工具
-install_basic_tools() {
-    log_step "安装基础工具..."
-    case $OS in
-        ubuntu|debian)
-            sudo apt-get install -y \
-                curl \
-                wget \
-                git \
-                vim \
-                ca-certificates \
-                gnupg \
-                lsb-release
-            ;;
-        centos|rhel|rocky|almalinux)
-            sudo yum install -y \
-                curl \
-                wget \
-                git \
-                vim \
-                ca-certificates
-            ;;
-    esac
-}
-
-# 安装 Docker
-install_docker() {
-    log_step "检查 Docker 安装状态..."
-
-    if command -v docker &> /dev/null; then
-        log_warn "Docker 已安装，版本: $(docker --version)"
-        read -p "是否重新安装 Docker? (y/N): " -n 1 -r
-        echo
-        if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-            return
-        fi
-    fi
-
-    log_step "安装 Docker..."
-
-    case $OS in
-        ubuntu|debian)
-            # 卸载旧版本
-            sudo apt-get remove -y docker docker-engine docker.io containerd runc 2>/dev/null || true
-
-            # 安装依赖
-            sudo apt-get update
-            sudo apt-get install -y \
-                ca-certificates \
-                curl \
-                gnupg \
-                lsb-release
-
-            # 添加 Docker 官方 GPG key
-            sudo mkdir -p /etc/apt/keyrings
-            curl -fsSL https://download.docker.com/linux/$OS/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
-
-            # 设置仓库
-            echo \
-                "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/$OS \
-                $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-
-            # 安装 Docker Engine
-            sudo apt-get update
-            sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-            ;;
-
-        centos|rhel|rocky|almalinux)
-            # 卸载旧版本
-            sudo yum remove -y docker docker-client docker-client-latest docker-common docker-latest \
-                docker-latest-logrotate docker-logrotate docker-engine 2>/dev/null || true
-
-            # 安装依赖
-            sudo yum install -y yum-utils
-            sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-
-            # 安装 Docker Engine
-            sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-            ;;
-    esac
-
-    # 启动 Docker
-    sudo systemctl start docker
-    sudo systemctl enable docker
-
-    log_info "Docker 安装完成: $(docker --version)"
-}
-
-# 配置 Docker 用户权限
-configure_docker_user() {
-    log_step "配置 Docker 用户权限..."
-
-    # 将当前用户添加到 docker 组
-    sudo usermod -aG docker $USER
-
-    log_warn "需要重新登录才能使用 Docker 而无需 sudo"
-    log_warn "或者运行: newgrp docker"
-}
-
-# 安装 Docker Compose (如果需要)
-install_docker_compose_standalone() {
-    log_step "检查 Docker Compose..."
-
-    if docker compose version &> /dev/null; then
-        log_info "Docker Compose (插件版本) 已安装"
+install_caddy() {
+    log_step "Installing Caddy..."
+    if command -v caddy >/dev/null 2>&1; then
+        log_info "Caddy already installed: $(caddy version)"
         return
     fi
 
-    if command -v docker-compose &> /dev/null; then
-        log_info "Docker Compose (独立版本) 已安装: $(docker-compose --version)"
-        return
-    fi
+    case "$OS" in
+        ubuntu|debian)
+            curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | \
+                sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+            curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | \
+                sudo tee /etc/apt/sources.list.d/caddy-stable.list >/dev/null
+            sudo apt-get update
+            sudo apt-get install -y caddy
+            ;;
+        centos|rhel|rocky|almalinux|fedora)
+            if command -v dnf >/dev/null 2>&1; then
+                sudo dnf install -y 'dnf-command(copr)'
+                sudo dnf copr enable -y @caddy/caddy
+                sudo dnf install -y caddy
+            else
+                sudo yum install -y yum-plugin-copr
+                sudo yum copr enable -y @caddy/caddy
+                sudo yum install -y caddy
+            fi
+            ;;
+    esac
 
-    log_step "安装 Docker Compose..."
-    COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d\" -f4)
-    sudo curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" \
-        -o /usr/local/bin/docker-compose
-    sudo chmod +x /usr/local/bin/docker-compose
-
-    log_info "Docker Compose 安装完成: $(docker-compose --version)"
+    log_info "Installed Caddy: $(caddy version)"
 }
 
-# 配置防火墙
+prepare_directories() {
+    log_step "Preparing deployment directories..."
+    sudo mkdir -p "$DEPLOY_PATH/releases" "$DEPLOY_PATH/incoming"
+    sudo chown -R "$USER":caddy "$DEPLOY_PATH"
+    sudo find "$DEPLOY_PATH" -type d -exec chmod 2755 {} +
+    log_info "Deployment path: $DEPLOY_PATH"
+}
+
+install_caddyfile() {
+    log_step "Installing Caddy configuration..."
+    sed \
+        -e "s|__SITE_HOST__|$SITE_HOST|g" \
+        -e "s|__SITE_ROOT__|$DEPLOY_PATH/current|g" \
+        "$CADDY_TEMPLATE" > "$TMP_CADDYFILE"
+
+    sudo cp "$TMP_CADDYFILE" /etc/caddy/Caddyfile
+    sudo caddy validate --config /etc/caddy/Caddyfile
+}
+
+configure_service() {
+    log_step "Enabling Caddy service..."
+    sudo systemctl enable caddy
+    sudo systemctl restart caddy
+    sudo systemctl --no-pager --full status caddy
+}
+
 configure_firewall() {
-    log_step "配置防火墙（开放 8111 端口）..."
+    ports=""
+    if [[ "$SITE_HOST" == *:* ]]; then
+        port="${SITE_HOST##*:}"
+        ports="$port"
+    else
+        ports="80 443"
+    fi
 
-    # UFW (Ubuntu/Debian)
-    if command -v ufw &> /dev/null; then
-        sudo ufw allow 8111/tcp
-        sudo ufw status
-    # firewalld (CentOS/RHEL)
-    elif command -v firewall-cmd &> /dev/null; then
-        sudo firewall-cmd --permanent --add-port=8111/tcp
+    log_step "Opening firewall ports: $ports"
+    if command -v ufw >/dev/null 2>&1; then
+        for port in $ports; do
+            sudo ufw allow "$port"/tcp
+        done
+    elif command -v firewall-cmd >/dev/null 2>&1; then
+        for port in $ports; do
+            sudo firewall-cmd --permanent --add-port="$port"/tcp
+        done
         sudo firewall-cmd --reload
-        sudo firewall-cmd --list-ports
     else
-        log_warn "未找到防火墙工具，请手动开放 8111 端口"
+        log_warn "No supported firewall tool detected. Open ports manually: $ports"
     fi
 }
 
-# 创建部署目录
-create_deploy_directory() {
-    log_step "创建部署目录..."
-
-    DEPLOY_DIR="${HOME}/mkdocs-deploy"
-    mkdir -p $DEPLOY_DIR
-
-    log_info "部署目录: $DEPLOY_DIR"
-    echo "export DEPLOY_PATH=$DEPLOY_DIR" >> ~/.bashrc
-}
-
-# 测试 Docker 安装
-test_docker() {
-    log_step "测试 Docker 安装..."
-
-    # 临时使用 newgrp 运行 docker 命令
-    if docker run --rm hello-world &> /dev/null; then
-        log_info "✓ Docker 测试成功"
-    else
-        log_warn "Docker 测试失败，可能需要重新登录"
-    fi
-}
-
-# 显示后续步骤
 show_next_steps() {
     echo ""
     echo "=========================================="
-    log_info "服务器初始化完成！"
+    log_info "Server bootstrap complete."
     echo "=========================================="
     echo ""
-    echo "后续步骤:"
+    echo "GitHub Actions secrets required:"
+    echo "  SERVER_HOST"
+    echo "  SERVER_USER"
+    echo "  SSH_PRIVATE_KEY"
     echo ""
-    echo "1. 退出当前 SSH 会话并重新登录（使 Docker 权限生效）"
-    echo "   或运行: newgrp docker"
+    echo "Optional runtime environment:"
+    echo "  DEPLOY_PATH=$DEPLOY_PATH"
+    echo "  SITE_HOST=$SITE_HOST"
     echo ""
-    echo "2. 在 GitLab 中配置 CI/CD 变量:"
-    echo "   - SSH_PRIVATE_KEY: SSH 私钥"
-    echo "   - SERVER_HOST: 服务器 IP 或域名"
-    echo "   - SERVER_USER: SSH 用户名"
-    echo "   - DEPLOY_PATH: $DEPLOY_DIR"
-    echo ""
-    echo "3. 推送代码到 GitLab，触发 CI/CD 流水线"
-    echo ""
-    echo "4. 部署完成后访问: http://$(hostname -I | awk '{print $1}'):8111"
-    echo ""
-    echo "=========================================="
+    echo "Caddy is serving from: $DEPLOY_PATH/current"
 }
 
-# 主函数
-main() {
-    echo "=========================================="
-    echo "MkDocs 服务器初始化脚本"
-    echo "=========================================="
-    echo ""
+cleanup() {
+    rm -f "$TMP_CADDYFILE"
+}
 
+trap cleanup EXIT
+
+main() {
     detect_os
-    update_system
     install_basic_tools
-    install_docker
-    configure_docker_user
-    install_docker_compose_standalone
+    install_caddy
+    prepare_directories
+    install_caddyfile
+    configure_service
     configure_firewall
-    create_deploy_directory
-    test_docker
     show_next_steps
 }
 
-# 执行主函数
-main
+main "$@"

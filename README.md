@@ -57,18 +57,19 @@
 │   │   └── files/           # 文件资料
 │   ├── css/                 # 自定义样式
 │   └── js/                  # 自定义脚本
-├── .deploy/                  # 部署脚本
-│   ├── build-and-deploy-server.sh  # 服务器端部署脚本
+├── .deploy/                  # 部署相关配置
+│   ├── Caddyfile            # Caddy 静态站模板
 │   └── server-init.sh       # 服务器初始化脚本
 ├── overrides/               # 主题自定义覆盖
 ├── hooks/                   # MkDocs 钩子脚本
 ├── mkdocs.yml              # MkDocs 配置文件
 ├── requirements.txt        # Python 依赖
-├── Dockerfile              # Docker 镜像配置
-├── docker-compose.yml      # Docker Compose 配置
+├── Dockerfile              # 本地容器化预览配置
+├── docker-compose.yml      # 本地容器化预览配置
 └── .github/                # GitHub Actions 工作流
     └── workflows/
-        └── deploy.yml      # 自动部署配置
+        ├── ci.yml          # 严格构建与校验
+        └── deploy.yml      # 静态站部署
 ```
 
 ---
@@ -96,17 +97,20 @@
 | **Material for MkDocs** | Material Design 主题 |
 | **Python-Markdown** | Markdown 解析与扩展 |
 | **KaTeX** | 数学公式渲染 |
-| **Docker** | 容器化部署 |
+| **Docker** | 本地预览 |
 | **GitHub Actions** | CI/CD 自动化部署 |
-| **Nginx** | Web 服务器 |
+| **Caddy** | 生产静态文件托管 |
 
 ---
 
 ## 📖 更多信息
 
 ### 部署说明
-本项目使用 GitHub Actions 自动部署，配置文件位于 `.github/workflows/deploy.yml`。
-部署脚本位于 `.deploy/` 目录。
+本项目使用 GitHub Actions 进行 CI/CD：
+- `ci.yml` 负责严格构建与大文件校验
+- `deploy.yml` 负责构建 `site/` 并上传到服务器
+
+生产环境由 Caddy 直接托管静态产物，服务器端不再执行 `git pull` 或 Docker 构建。
 
 ### 模板来源
 本项目基于 [TonyCrane/note](https://github.com/TonyCrane/note) 模板构建，在此表示感谢！
