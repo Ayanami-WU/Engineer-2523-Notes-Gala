@@ -16,7 +16,7 @@ jobs:
     name: Build And Deploy Static Site
     runs-on: ubuntu-latest
     env:
-      DEPLOY_PATH: /srv/mkdocs-site
+      DEPLOY_PATH: /home/deploy/mkdocs-site
       RELEASE_SHA: ${{ github.sha }}
 
     steps:
