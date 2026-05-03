@@ -15,7 +15,7 @@ NC='\033[0m'
 SITE_HOST="${SITE_HOST:-:8111}"
 DEPLOY_PATH="${DEPLOY_PATH:-/srv/mkdocs-site}"
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CADDY_TEMPLATE="$REPO_DIR/Caddyfile"
+CADDY_TEMPLATE="${CADDY_TEMPLATE:-$REPO_DIR/Caddyfile}"
 TMP_CADDYFILE="$(mktemp)"
 
 log_info() {
@@ -106,10 +106,50 @@ prepare_directories() {
 
 install_caddyfile() {
     log_step "Installing Caddy configuration..."
-    sed \
-        -e "s|__SITE_HOST__|$SITE_HOST|g" \
-        -e "s|__SITE_ROOT__|$DEPLOY_PATH/current|g" \
-        "$CADDY_TEMPLATE" > "$TMP_CADDYFILE"
+    if [ -f "$CADDY_TEMPLATE" ]; then
+        sed \
+            -e "s|__SITE_HOST__|$SITE_HOST|g" \
+            -e "s|__SITE_ROOT__|$DEPLOY_PATH/current|g" \
+            "$CADDY_TEMPLATE" > "$TMP_CADDYFILE"
+    else
+        log_warn "Caddy template not found at $CADDY_TEMPLATE, using built-in template."
+        cat > "$TMP_CADDYFILE" <<EOF
+$SITE_HOST {
+    root * $DEPLOY_PATH/current
+
+    encode gzip zstd
+
+    header {
+        X-Frame-Options "SAMEORIGIN"
+        X-Content-Type-Options "nosniff"
+        -X-Powered-By
+    }
+
+    @static {
+        path *.jpg *.jpeg *.png *.gif *.ico *.css *.js *.svg *.woff *.woff2 *.ttf *.eot
+    }
+    header @static Cache-Control "public, max-age=2592000, immutable"
+
+    @pdf {
+        path *.pdf
+    }
+    header @pdf Content-Disposition "inline"
+    header @pdf X-Content-Type-Options "nosniff"
+
+    @course_dirs {
+        path_regexp course_dirs ^/(calculus|linear-algebra|c-programming|engineering-graphics|college-english|ode|physics|mechanical-drawing|ai-fundamentals|politics)/.+/$
+    }
+
+    handle @course_dirs {
+        file_server browse
+    }
+
+    handle {
+        file_server
+    }
+}
+EOF
+    fi
 
     sudo cp "$TMP_CADDYFILE" /etc/caddy/Caddyfile
     sudo caddy validate --config /etc/caddy/Caddyfile
