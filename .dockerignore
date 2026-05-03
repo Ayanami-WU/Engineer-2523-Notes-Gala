@@ -1,0 +1,12 @@
+.git
+.gitignore
+.github
+.idea
+.vscode
+.DS_Store
+site
+cache
+__pycache__
+CLAUDE.md
+AGENT.md
+工试2523学习资料库

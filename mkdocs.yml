@@ -151,4 +151,9 @@ nav:
   - C程序设计: c-programming/index.md
   - 工程图学: engineering-graphics/index.md
   - 大学英语: college-english/index.md
+  - 常微分方程: ode/index.md
+  - 大学物理: physics/index.md
+  - 机械制图: mechanical-drawing/index.md
+  - 人工智能基础: ai-fundamentals/index.md
+  - 形势与政策: politics/index.md
   - 参考笔记: tonycrane-notes.md

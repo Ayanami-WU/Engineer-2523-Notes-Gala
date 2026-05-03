@@ -74,3 +74,41 @@
 </div>
 <a class="down-button" target="_blank" href="考试宝典.zip" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/zip.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">C程复习器</div>
+<div class="file-meta">146 KB · ZIP压缩包</div>
+</div>
+<a class="down-button" target="_blank" href="C程复习器.zip" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+## 📖 更多笔记
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">Lumi的整合资料</div>
+<div class="file-meta">2.7 MB · PDF文档</div>
+</div>
+<a class="down-button" target="_blank" href="Lumi的整合资料.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">Lumi的笔记1</div>
+<div class="file-meta">847 KB · PDF文档</div>
+</div>
+<a class="down-button" target="_blank" href="Lumi的笔记1.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="card file-block" markdown="1">
+<div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+<div class="file-body">
+<div class="file-title">Lumi的笔记2</div>
+<div class="file-meta">2.9 MB · PDF文档</div>
+</div>
+<a class="down-button" target="_blank" href="Lumi的笔记2.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>

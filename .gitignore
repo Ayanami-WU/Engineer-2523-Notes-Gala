@@ -19,3 +19,10 @@ Makefile
 # IDE
 .idea/
 .vscode/
+
+# Agent files
+CLAUDE.md
+AGENT.md
+
+# Raw source materials
+工试2523学习资料库/
