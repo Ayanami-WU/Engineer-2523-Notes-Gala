@@ -38,7 +38,7 @@
 <div class="file-title">微积分下 期中</div>
 <div class="file-meta">1.3 MB · PDF文档</div>
 </div>
-<a class="down-button" target="_blank" href="微积分下_期中.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="down-button" target="_blank" href="../微积分下_期中.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 
 <div class="card file-block" markdown="1">
@@ -47,7 +47,7 @@
 <div class="file-title">微积分下 期中答案</div>
 <div class="file-meta">5.2 MB · PDF文档</div>
 </div>
-<a class="down-button" target="_blank" href="微积分下_期中答案.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="down-button" target="_blank" href="../微积分下_期中答案.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 
 <div class="card file-block" markdown="1">
@@ -56,7 +56,7 @@
 <div class="file-title">微积分下 期末</div>
 <div class="file-meta">966 KB · PDF文档</div>
 </div>
-<a class="down-button" target="_blank" href="微积分下_期末.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="down-button" target="_blank" href="../微积分下_期末.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 
 <div class="card file-block" markdown="1">
@@ -65,7 +65,7 @@
 <div class="file-title">微积分下 期末答案</div>
 <div class="file-meta">5.6 MB · PDF文档</div>
 </div>
-<a class="down-button" target="_blank" href="微积分下_期末答案.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="down-button" target="_blank" href="../微积分下_期末答案.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 
 <div class="card file-block" markdown="1">
@@ -74,5 +74,5 @@
 <div class="file-title">微积分下 第二次小测汇总</div>
 <div class="file-meta">8.3 MB · PDF文档</div>
 </div>
-<a class="down-button" target="_blank" href="微积分下_第二次小测汇总.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="down-button" target="_blank" href="../微积分下_第二次小测汇总.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>

@@ -13,7 +13,7 @@ BLUE='\033[0;34m'
 NC='\033[0m'
 
 SITE_HOST="${SITE_HOST:-:8111}"
-DEPLOY_PATH="${DEPLOY_PATH:-/srv/mkdocs-site}"
+DEPLOY_PATH="${DEPLOY_PATH:-/home/deploy/mkdocs-site}"
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CADDY_TEMPLATE="${CADDY_TEMPLATE:-$REPO_DIR/Caddyfile}"
 TMP_CADDYFILE="$(mktemp)"
