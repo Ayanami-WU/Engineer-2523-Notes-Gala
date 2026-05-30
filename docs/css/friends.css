@@ -1,0 +1,98 @@
+.md-typeset .friend-grid > ul > li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.md-typeset .friend-grid > ul > li > p:first-child {
+  margin: 0;
+  line-height: 0;
+}
+
+.md-typeset .friend-grid > ul > li > p:first-child > a {
+  display: inline-flex !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.md-typeset .friend-grid > ul > li > p:first-child img {
+  pointer-events: none;
+}
+
+.md-typeset .friend-avatar {
+  flex: 0 0 2.8rem;
+  width: 2.8rem !important;
+  height: 2.8rem !important;
+  max-width: 2.8rem !important;
+  border: 0.04rem solid var(--md-default-fg-color--lightest);
+  border-radius: 0.7rem;
+  background: var(--md-code-bg-color);
+  margin: 0 !important;
+  object-fit: cover;
+}
+
+.md-typeset .friend-source {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.25rem;
+  padding: 0.08rem 0.35rem;
+  border: 0.04rem solid var(--md-default-fg-color--lightest);
+  border-radius: 0.18rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.58rem;
+  line-height: 1.4;
+}
+
+.md-typeset .friend-grid > ul > li > p:last-child {
+  margin-top: auto;
+  position: static;
+}
+
+.md-typeset .friend-grid > ul > li > p:last-child > a {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.32rem;
+  width: fit-content;
+  padding: 0.28rem 0.55rem;
+  border: 0.04rem solid var(--md-primary-fg-color);
+  border-radius: 0.22rem;
+  color: var(--md-primary-fg-color);
+  font-weight: 600;
+  line-height: 1.35;
+  position: static !important;
+  text-decoration: none;
+}
+
+.md-typeset .friend-grid > ul > li > p:last-child > a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.md-typeset .friend-grid > ul > li:hover > p:last-child > a,
+.md-typeset .friend-grid > ul > li > p:last-child > a:focus-visible {
+  background: var(--md-accent-fg-color--transparent);
+  color: var(--md-accent-fg-color);
+}
+
+.md-typeset .friend-grid > ul > li:focus-within {
+  outline: 0.08rem solid var(--md-accent-fg-color);
+  outline-offset: 0.08rem;
+}
+
+@media screen and (max-width: 692px) {
+  .md-typeset .friend-avatar {
+    flex-basis: 2.45rem;
+    width: 2.45rem !important;
+    height: 2.45rem !important;
+    max-width: 2.45rem !important;
+    border-radius: 0.6rem;
+  }
+}

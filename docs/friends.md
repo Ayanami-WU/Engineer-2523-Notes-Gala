@@ -19,7 +19,7 @@
 
     航空航天学院学习分享平台
 
-    [:octicons-arrow-right-24: 打开资料](https://fsaa.pages.zjusct.io/fsaa/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://fsaa.pages.zjusct.io/fsaa/){ target="_blank" rel="noopener" }
 
 -   ![Hikari of ME avatar](assets/friends/hikari-of-me.svg){ .friend-avatar }
 
@@ -27,7 +27,7 @@
 
     机械学院资源整理站
 
-    [:octicons-arrow-right-24: 打开资料](https://hikari-of-me.pages.zjusct.io/hikari-of-me/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://hikari-of-me.pages.zjusct.io/hikari-of-me/){ target="_blank" rel="noopener" }
 
 -   ![EEStUdy-Place avatar](assets/friends/eestudy-place.svg){ .friend-avatar }
 
@@ -35,7 +35,7 @@
 
     电气工程学院学习网站
 
-    [:octicons-arrow-right-24: 打开资料](http://www.eestudy-place.com/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](http://www.eestudy-place.com/){ target="_blank" rel="noopener" }
 
 -   ![ZJU-EE avatar](assets/friends/zju-ee.svg){ .friend-avatar }
 
@@ -43,7 +43,7 @@
 
     浙江大学电气工程学院（自动化）课程指南
 
-    [:octicons-arrow-right-24: 打开目录](https://github.com/alwaysbyx/ZJU-EE){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料目录](https://github.com/alwaysbyx/ZJU-EE){ target="_blank" rel="noopener" }
 
 -   ![一起学习德智体 avatar](assets/friends/dezhiti.svg){ .friend-avatar }
 
@@ -51,7 +51,7 @@
 
     电气工程专业个人资源站
 
-    [:octicons-arrow-right-24: 打开资料](https://mp.weixin.qq.com/s/AebEozF9Xemqb1BfIFLayg){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://mp.weixin.qq.com/s/AebEozF9Xemqb1BfIFLayg){ target="_blank" rel="noopener" }
 
 </div>
 
@@ -65,7 +65,7 @@
 
     浙江大学电子科学与技术专业部分课程仓库
 
-    [:octicons-arrow-right-24: 打开资料](https://zju-isee.github.io/zju-isee/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://zju-isee.github.io/zju-isee/){ target="_blank" rel="noopener" }
 
 -   ![ZJU-OPT avatar](assets/friends/zju-opt.svg){ .friend-avatar }
 
@@ -73,7 +73,7 @@
 
     光电信息科学与工程（OPT）课程共享计划
 
-    [:octicons-arrow-right-24: 打开目录](https://github.com/yinze00/ZJU-OPT){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料目录](https://github.com/yinze00/ZJU-OPT){ target="_blank" rel="noopener" }
 
 -   ![控制学习驿站 avatar](assets/friends/ctrl-a.svg){ .friend-avatar }
 
@@ -81,7 +81,7 @@
 
     控制学院学习资源整理站
 
-    [:octicons-arrow-right-24: 打开资料](https://ctrl-a.pages.zjusct.io/CseHub/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://ctrl-a.pages.zjusct.io/CseHub/){ target="_blank" rel="noopener" }
 
 -   ![CourseNoteOfZJUSE avatar](assets/friends/zjuse-course-note.svg){ .friend-avatar }
 
@@ -89,7 +89,7 @@
 
     ZJU-SE 的一些课程笔记、历年卷、课程经历分享
 
-    [:octicons-arrow-right-24: 打开资料](https://zhang-each.github.io/CourseNoteOfZJUSE/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://zhang-each.github.io/CourseNoteOfZJUSE/){ target="_blank" rel="noopener" }
 
 -   ![ZJU_Course avatar](assets/friends/zju-course.svg){ .friend-avatar }
 
@@ -97,7 +97,7 @@
 
     个人计算机课程资料整理（浙大 CS 专业）
 
-    [:octicons-arrow-right-24: 打开目录](https://github.com/RyanFcr/ZJU_Course?tab=readme-ov-file){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料目录](https://github.com/RyanFcr/ZJU_Course?tab=readme-ov-file){ target="_blank" rel="noopener" }
 
 -   ![ZJU CS - All Sum in One! avatar](assets/friends/zju-cs-asio.svg){ .friend-avatar }
 
@@ -105,7 +105,7 @@
 
     收集 ZJU-CS 相关网站与学习资料索引
 
-    [:octicons-arrow-right-24: 打开资料](https://isshikihugh.github.io/zju-cs-asio/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://isshikihugh.github.io/zju-cs-asio/){ target="_blank" rel="noopener" }
 
 -   ![图灵班学习指南 avatar](assets/friends/turing-courses.svg){ .friend-avatar }
 
@@ -113,7 +113,7 @@
 
     图灵班学习指南
 
-    [:octicons-arrow-right-24: 打开资料](https://zju-turing.github.io/TuringCourses/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://zju-turing.github.io/TuringCourses/){ target="_blank" rel="noopener" }
 
 -   ![CTF101 avatar](assets/friends/ctf101.svg){ .friend-avatar }
 
@@ -121,7 +121,7 @@
 
     安全攻防实践
 
-    [:octicons-arrow-right-24: 打开资料](https://courses.zjusec.com/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://courses.zjusec.com/){ target="_blank" rel="noopener" }
 
 -   ![HPC101 avatar](assets/friends/hpc101.svg){ .friend-avatar }
 
@@ -129,7 +129,7 @@
 
     HPC101
 
-    [:octicons-arrow-right-24: 打开资料](https://hpc101.zjusct.io){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://hpc101.zjusct.io){ target="_blank" rel="noopener" }
 
 -   ![Computer-System-Start-From-a-Newbie avatar](assets/friends/computer-system-newbie.svg){ .friend-avatar }
 
@@ -137,7 +137,7 @@
 
     计算机系统——从小白学起
 
-    [:octicons-arrow-right-24: 打开资料](https://yhwu-is.github.io/Computer-System-Start-From-a-Newbie/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://yhwu-is.github.io/Computer-System-Start-From-a-Newbie/){ target="_blank" rel="noopener" }
 
 -   ![csdiy.wiki avatar](assets/friends/csdiy.svg){ .friend-avatar }
 
@@ -145,7 +145,7 @@
 
     计算机自学指南
 
-    [:octicons-arrow-right-24: 打开资料](https://csdiy.wiki/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://csdiy.wiki/){ target="_blank" rel="noopener" }
 
 </div>
 
@@ -159,7 +159,7 @@
 
     全校课程笔记与攻略合集
 
-    [:octicons-arrow-right-24: 打开资料](https://qsctech.github.io/zju-icicles/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://qsctech.github.io/zju-icicles/){ target="_blank" rel="noopener" }
 
 -   ![zju-welcome avatar](assets/friends/zju-welcome.svg){ .friend-avatar }
 
@@ -167,7 +167,7 @@
 
     浙江大学新生入学指南
 
-    [:octicons-arrow-right-24: 打开资料](https://zjuers.com/welcome/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://zjuers.com/welcome/){ target="_blank" rel="noopener" }
 
 -   ![PracticalSkillsTutorial avatar](assets/friends/practical-skills.svg){ .friend-avatar }
 
@@ -175,7 +175,7 @@
 
     「实用技能拾遗」系列辅学课程网站
 
-    [:octicons-arrow-right-24: 打开资料](https://slides.tonycrane.cc/PracticalSkillsTutorial/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://slides.tonycrane.cc/PracticalSkillsTutorial/){ target="_blank" rel="noopener" }
 
 -   ![数学之韵 avatar](assets/friends/zju-math.svg){ .friend-avatar }
 
@@ -183,7 +183,7 @@
 
     数学专业课程经验与学习资料共享
 
-    [:octicons-arrow-right-24: 打开资料](https://zju_math.pages.zjusct.io/mathweb/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://zju_math.pages.zjusct.io/mathweb/){ target="_blank" rel="noopener" }
 
 -   ![Linear-Algebra-Left-Undone avatar](assets/friends/linear-algebra-left-undone.svg){ .friend-avatar }
 
@@ -191,7 +191,7 @@
 
     线性代数：未竟之美
 
-    [:octicons-arrow-right-24: 打开资料](https://yhwu-is.github.io/Notes/math/linear_algebra/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://yhwu-is.github.io/Notes/math/linear_algebra/){ target="_blank" rel="noopener" }
 
 -   ![路老师的 nonsense collection avatar](assets/friends/lu-nonsense.svg){ .friend-avatar }
 
@@ -199,7 +199,7 @@
 
     微积分相关资源
 
-    [:octicons-arrow-right-24: 打开资料](https://mp.weixin.qq.com/s/-hBAeed1AWT35l6Xc5svXQ){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://mp.weixin.qq.com/s/-hBAeed1AWT35l6Xc5svXQ){ target="_blank" rel="noopener" }
 
 -   ![Randall 爱数学 avatar](assets/friends/randall-math.svg){ .friend-avatar }
 
@@ -207,7 +207,7 @@
 
     线代答案、回忆卷相关资源
 
-    [:octicons-arrow-right-24: 打开资料](https://mp.weixin.qq.com/s/M6ulC2ljYVDZ2mqXJRST-Q){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://mp.weixin.qq.com/s/M6ulC2ljYVDZ2mqXJRST-Q){ target="_blank" rel="noopener" }
 
 -   ![SLOFFDE avatar](assets/friends/sloffde.svg){ .friend-avatar }
 
@@ -215,7 +215,7 @@
 
     医学类专业课以及基础课程
 
-    [:octicons-arrow-right-24: 打开资料](https://mp.weixin.qq.com/s/O1wa9_9zslam7ovctp4ffw){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://mp.weixin.qq.com/s/O1wa9_9zslam7ovctp4ffw){ target="_blank" rel="noopener" }
 
 -   ![农生链 avatar](assets/friends/nongshenglian.svg){ .friend-avatar }
 
@@ -223,7 +223,7 @@
 
     由学生运营的农生环专业资源与经验分享平台
 
-    [:octicons-arrow-right-24: 打开资料](https://mp.weixin.qq.com/s/qTc_Reqa8HxLa3boh988Wg){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://mp.weixin.qq.com/s/qTc_Reqa8HxLa3boh988Wg){ target="_blank" rel="noopener" }
 
 </div>
 
@@ -237,7 +237,7 @@
 
     给新大学生的网上冲浪和计算机使用教程
 
-    [:octicons-arrow-right-24: 打开资料](https://rainchan.win/SurfingTutorial/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://rainchan.win/SurfingTutorial/){ target="_blank" rel="noopener" }
 
 -   ![How-To-Ask-Questions avatar](assets/friends/how-to-ask.svg){ .friend-avatar }
 
@@ -245,7 +245,7 @@
 
     提问的智慧
 
-    [:octicons-arrow-right-24: 打开资料](https://ustb-806.github.io/wiki/doc/smart-questions/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://ustb-806.github.io/wiki/doc/smart-questions/){ target="_blank" rel="noopener" }
 
 -   ![SurviveSJTUManual avatar](assets/friends/survive-sjtu.svg){ .friend-avatar }
 
@@ -253,7 +253,7 @@
 
     SJTU 生存手册
 
-    [:octicons-arrow-right-24: 打开资料](https://survivesjtu.gitbook.io/survivesjtumanual){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://survivesjtu.gitbook.io/survivesjtumanual){ target="_blank" rel="noopener" }
 
 -   ![missing semester avatar](assets/friends/missing-semester.svg){ .friend-avatar }
 
@@ -261,6 +261,6 @@
 
     MIT 课程 - 计算机教育中缺失的一课
 
-    [:octicons-arrow-right-24: 打开资料](https://missing-semester-cn.github.io/){ target="_blank" rel="noopener" }
+    [:octicons-arrow-right-24: 访问资料站](https://missing-semester-cn.github.io/){ target="_blank" rel="noopener" }
 
 </div>
