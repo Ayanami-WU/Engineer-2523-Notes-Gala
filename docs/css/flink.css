@@ -73,3 +73,71 @@
     width: calc(100% - 15px) !important;
   }
 }
+
+.md-typeset .friend-grid > ul > li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.md-typeset .friend-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.md-typeset .friend-avatar {
+  flex: 0 0 2.8rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 0.04rem solid var(--md-default-fg-color--lightest);
+  border-radius: 0.7rem;
+  background: var(--md-code-bg-color);
+  object-fit: cover;
+}
+
+.md-typeset .friend-card-title {
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.md-typeset .friend-card-title strong {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.md-typeset .friend-source {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 0.25rem;
+  padding: 0.08rem 0.35rem;
+  border: 0.04rem solid var(--md-default-fg-color--lightest);
+  border-radius: 0.18rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.58rem;
+  line-height: 1.4;
+}
+
+.md-typeset .friend-card-desc {
+  margin: 0;
+  color: var(--md-default-fg-color--light);
+  line-height: 1.55;
+}
+
+.md-typeset .friend-grid > ul > li > p:last-child {
+  margin-top: auto;
+}
+
+@media screen and (max-width: 692px) {
+  .md-typeset .friend-card-head {
+    gap: 0.6rem;
+  }
+
+  .md-typeset .friend-avatar {
+    flex-basis: 2.45rem;
+    width: 2.45rem;
+    height: 2.45rem;
+    border-radius: 0.6rem;
+  }
+}
